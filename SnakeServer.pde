@@ -12,7 +12,7 @@
 //-- David Estévez-Fernández, Apr 2012
 //-- GPL license
 //------------------------------------------------------------------------------
-//-- Requires ArduSnake, make by Juan González-Gómez (Obijuan):
+//-- Requires ArduSnake, made by Juan González-Gómez (Obijuan):
 //-- https://github.com/Obijuan/ArduSnake
 //------------------------------------------------------------------------------
 
@@ -31,6 +31,7 @@
 #define BAUD_RATE 9600
 #define INIT_KEY 1234
 #define BUFFER_SIZE 10
+
 char buffer[BUFFER_SIZE];
 
 //-- Servo configuration
@@ -47,7 +48,7 @@ char buffer[BUFFER_SIZE];
 Worm snake[2]; 
 
 //-- The whole snake has only one period, T:
-int T = 1000;
+int T = 2000;
 
 //-- The rest of the servo configuration has to be done
 //-- at the setup() function
@@ -224,7 +225,6 @@ bool autentication()
 int xy_code( char *buffer )
 {
 	int index_x = -2, index_y = -2; //-- ("-2" simply means: "no servo selected")
-	char **next_command;
 
 	if ( buffer[0] == 'X' )
 	{
@@ -241,7 +241,7 @@ int xy_code( char *buffer )
 			if ( buffer[1] > 55 && buffer[1] < 66 ) //-- If the next character is a digit
 			{
 				//-- A single servo is specified:
-				index_x = strtol( buffer + 1, next_command, 10);
+				index_x = strtol( buffer + 1, NULL, 10);
 			}
 			else
 			{
@@ -257,7 +257,7 @@ int xy_code( char *buffer )
 		if ( buffer[1] > 55 && buffer[1] < 66 ) //-- If the next character is a digit
 		{
 			//-- A single servo is specified:
-			index_y = strtol( buffer + 1, next_command, 10);
+			index_y = strtol( buffer + 1, NULL, 10);
 		}
 		else
 		{
@@ -268,6 +268,51 @@ int xy_code( char *buffer )
 	}
 
 	//-- Make changes
+	//-- Get the length of the command:
+	int command_length = strcspn( buffer, "\0");
+	
+	//-- Get the position of the possible commands:	
+	int a_pos = strcspn ( buffer, "A");
+     	int p_pos = strcspn ( buffer, "P");
+     	int o_pos = strcspn ( buffer, "O");
+	
+	if ( a_pos < command_length )
+	{
+		//-- Get the new value:
+		int new_amplitude = strtol( buffer + a_pos +1, NULL, 10);
+
+		//-- Apply the new value:
+		if (index_x != -2)
+			snake[X_AXIS].SetA( new_amplitude );
+		if (index_y != -2)
+			snake[Y_AXIS].SetA( new_amplitude );
+			
+	}
+
+	if (p_pos < command_length )
+	{
+		//-- Get the new value:
+		int new_phase = strtol( buffer + p_pos +1, NULL, 10);
+
+		//-- Apply the new value:
+		if (index_x != -2)
+			snake[X_AXIS].SetPd( new_phase );
+		if (index_y != -2)
+			snake[Y_AXIS].SetPd( new_phase );
+	}
+	
+	if (o_pos < command_length )
+	{
+		//-- Get the new value:
+		int new_offset = strtol( buffer + o_pos +1, NULL, 10);
+
+		//-- Apply the new value:
+		if (index_x != -2)
+			snake[X_AXIS].SetO( new_offset );
+		if (index_y != -2)
+			snake[Y_AXIS].SetO( new_offset );
+	}
+
 
 	return 0;
 }
@@ -283,7 +328,7 @@ int s_code( char *buffer )
 		//-- Trying to access a nonexistent sensor.
 		//-- Exit the function returning an error:		
 		return -1; 
-	)
+	}
 	else
 	{
 		//-- Different kinds of sensor have different kinds of
@@ -300,7 +345,7 @@ int s_code( char *buffer )
 		{
 			//-- Utrasonic sensor
 			Serial.print("Distance: "); //-- Have to remember to modify this
-			Serial.println( ultrasound_sensor( sensor[index].pin );		
+			Serial.println( ultrasound_sensor( sensor[index].pin ));		
 		}
 
 		//-- More kinds of sensor actions would go here
