@@ -6,10 +6,10 @@
 //-- movements of the oscillators, communicate to it throught a serial connection
 //-- and your computer can take care of the algorithms, waves and movements.
 //-- 
-//-- For more info, read README.txt
+//-- For more info, read README.md
 //------------------------------------------------------------------------------
 //-- Author: 
-//-- David Estévez-Fernández, Apr 2012
+//-- David Estévez-Fernández, May 2012
 //-- GPL license
 //------------------------------------------------------------------------------
 //-- Requires ArduSnake, made by Juan González-Gómez (Obijuan):
@@ -30,7 +30,7 @@
 //-----------------------------------------------------
 #define BAUD_RATE 9600
 #define INIT_KEY 1234
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 16
 
 char buffer[BUFFER_SIZE];
 
@@ -79,7 +79,8 @@ Sensor sensor[NUM_SENSOR] = {
 
 void setup()
 {
-	//-- Define the Snake/Worm structure:
+	//-- This is the configuration I work with in my snake, you
+	//-- will have to define your own structure:
 	//-- X-axis modules:
 	snake[X_AXIS].add_servo(SERVO1, true);
 	snake[X_AXIS].add_servo(SERVO2, true);
@@ -338,13 +339,13 @@ int s_code( char *buffer )
 		{
 			//-- Analog sensor managing:
 			int signal = analogRead( sensor[index].pin );
-			Serial.print( "Sensor read: "); //-- Have to remember to modify this
+			//Serial.print( "Sensor read: "); //-- Just for debugging
 			Serial.println( signal );
 		}
 		else if (sensor[index].type == 1)
 		{
 			//-- Utrasonic sensor
-			Serial.print("Distance: "); //-- Have to remember to modify this
+			//Serial.print("Distance: "); //-- Just for debugging
 			Serial.println( ultrasound_sensor( sensor[index].pin ));		
 		}
 
