@@ -1,7 +1,7 @@
-=====================================================================
+
 			SnakeServer
 =====================================================================
-  Author: David Estévez-Fernández ( http://github.com/David-Estevez )
+  Author: David Estévez-Fernández [David-Estevez](http://github.com/David-Estevez)
   Released under GPL license , May 2012
 ---------------------------------------------------------------------
 
@@ -9,12 +9,12 @@ Firmware for robotics snake that manages movement and sensor data.
 
 ---------------------------------------------------------------------
 
-1.Introduction
-2.Installation
-3.Usage
-	3.1.Configuration
-	3.2.Commands
-4.Version log
+*1.Introduction
+*2.Installation
+*3.Usage
+	**3.1.Configuration
+	**3.2.Commands
+*4.Version log
 
 ----------------------------------------------------------------------
 
@@ -34,18 +34,18 @@ PC server for controlling the robot coming soon!
 
 2.Installation
 ------------------------------------------------------------------------
-·First of all, Arduino IDE is needed to compile the sketch and upload it 
+*First of all, Arduino IDE is needed to compile the sketch and upload it 
 to the Skymega / Arduino board. You can download it here:
 http://arduino.cc/hu/Main/Software
 
-·ArduSnake, made by Juan González-Gómez (Obijuan), is also needed. It can
+*ArduSnake, made by Juan González-Gómez (Obijuan), is also needed. It can
 be downloaded here:
 
 http://github.com/Obijuan/ArduSnake
 
 It has to be installed as an Arduino library, in your libraries folder.
 
-·Once the previous requirements are installed, you have to configure the
+*Once the previous requirements are installed, you have to configure the
 .pde file with the values according to your robot, and then you can open
 the sketch with the Arduino IDE and upload it to your modular robot.
 
