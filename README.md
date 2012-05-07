@@ -2,28 +2,23 @@
 SnakeServer
 ===================================================================
 
- Author: [David Estévez-Fernández](http://github.com/David-Estevez)
-
- Released under GPL license , May 2012
-
-
+ * Author: [David Estévez-Fernández](http://github.com/David-Estevez)
+ * Released under GPL license , May 2012
 
 Firmware for robotics snake that manages movement and sensor data.
 
+
+0. README index
 ---------------------------------------------------------------------
-
-* 1.Introduction
-* 2.Installation
-* 3.Usage
-	* 3.1.Configuration
-	* 3.2.Commands
-* 4.Version log
-
-----------------------------------------------------------------------
+ 1. Introduction
+ 2. Installation
+ 3. Usage
+	 3.1. Configuration
+	 3.2. Commands
+ 4. Version log
 
 
-
-1.Introduction
+1. Introduction
 ----------------------------------------------------------------------
 Inspired by CNC machines firmware, driven by Gcodes, I have made this
 firmware for modular robots based on Arduino and the ArduSnake library.
@@ -40,11 +35,14 @@ PC server for controlling the robot coming soon!
 ------------------------------------------------------------------------
 * First of all, Arduino IDE is needed to compile the sketch and upload it 
 to the Skymega / Arduino board. You can download it here:
+
 [Arduino IDE](http://arduino.cc/hu/Main/Software)
 
 * ArduSnake, made by Juan González-Gómez (Obijuan), is also needed. It can
 be downloaded here:
+
 [ArduSnake](http://github.com/Obijuan/ArduSnake)
+
 It has to be installed as an Arduino library, in your libraries folder.
 
 * Once the previous requirements are installed, you have to configure the
@@ -99,22 +97,24 @@ affects to all servos in that axis.
 			O for offset
 
 		* Examples of XY codes:
+
 			`XYA60 (sets the amplitude of all servos to 60 degrees)`
-			YO45 (sets the offset of all servos in Y axis to 45 degrees)
-			X0P-180 (sets the phase of the first X axis servo to -180 degrees)
+			`YO45 (sets the offset of all servos in Y axis to 45 degrees)`
+			`X0P-180 (sets the phase of the first X axis servo to -180 degrees)`
 
 		*It is possible to specify more than one parameter at a time:
-			X0A60O15P120 (sets amplitude, phase and offset of first servo)
+			`X0A60O15P120 (sets amplitude, phase and offset of first servo)`
 
 - "S" codes:
 	* Are use to retrieve the value of a sensor. It sintax is S + index of sensor
 	I.e:
 	`S0 (returns the value measured by the first sensor)`
 
-- "T" (period)
+- "T" (period):
 	* Sets the value of the period of the oscillations
+
 	I.e:
-		T1000 
+		`T1000`
 
 	* Affects to all modules of the robot
   
