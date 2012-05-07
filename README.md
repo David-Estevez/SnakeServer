@@ -1,6 +1,6 @@
 
-			SnakeServer
-=====================================================================
+SnakeServer
+===================================================================
 
  Author: [David Estévez-Fernández](http://github.com/David-Estevez)
 
@@ -44,9 +44,7 @@ to the Skymega / Arduino board. You can download it here:
 
 * ArduSnake, made by Juan González-Gómez (Obijuan), is also needed. It can
 be downloaded here:
-
 [ArduSnake](http://github.com/Obijuan/ArduSnake)
-
 It has to be installed as an Arduino library, in your libraries folder.
 
 * Once the previous requirements are installed, you have to configure the
@@ -56,12 +54,13 @@ the sketch with the Arduino IDE and upload it to your modular robot.
 3.Usage
 ------------------------------------------------------------------------
 3.1.Configuration
+-------------------
 
 Inside the .pde file there are some parameters that need to be adjusted:
 
--Communication parameters:
-.BAUD_RATE: choose the apropiate for your serial connection.
-.INIT_KEY: key that identifies your robot. It is used for stablishing a
+- Communication parameters:
+	* BAUD_RATE: choose the apropiate for your serial connection.
+	* INIT_KEY: key that identifies your robot. It is used for stablishing a
 "secure" connection.
 
 
@@ -79,6 +78,8 @@ type. Currently are implemented "analog" which returns the value from
 distance in cm read by the sensor.
 
 3.2.Commands
+--------------------
+
 - Stablishing connection
 	* The firmware accepts commands when it recieves a string that starts with
 i and contains the init key (i.e "i1234")
@@ -98,7 +99,7 @@ affects to all servos in that axis.
 			O for offset
 
 		* Examples of XY codes:
-			XYA60 (sets the amplitude of all servos to 60 degrees)
+			`XYA60 (sets the amplitude of all servos to 60 degrees)`
 			YO45 (sets the offset of all servos in Y axis to 45 degrees)
 			X0P-180 (sets the phase of the first X axis servo to -180 degrees)
 
@@ -107,8 +108,8 @@ affects to all servos in that axis.
 
 - "S" codes:
 	* Are use to retrieve the value of a sensor. It sintax is S + index of sensor
-I.e:
-	S0 (returns the value measured by the first sensor)
+	I.e:
+	`S0 (returns the value measured by the first sensor)`
 
 - "T" (period)
 	* Sets the value of the period of the oscillations
@@ -120,4 +121,4 @@ I.e:
 4.Version Log
 ------------------------------------------------------------------------
 
-v1.0 Just released!
+* v1.0 Just released!
