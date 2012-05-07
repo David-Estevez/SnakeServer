@@ -11,12 +11,12 @@ Firmware for robotic snake that manages movement and sensor data.
 
 0. README index
 ---------------------------------------------------------------------
- 1. Introduction
- 2. Installation
- 3. Usage
-	* Configuration
-	* Commands
- 4. Version log
+ * 1.Introduction
+ * 2.Installation
+ * 3.Usage
+	* 3.1.Configuration
+	* 3.2.Commands
+ * 4.Version log
 
 
 1. Introduction
