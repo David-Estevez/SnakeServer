@@ -14,8 +14,8 @@ Firmware for robotic snake that manages movement and sensor data.
  1. Introduction
  2. Installation
  3. Usage
-	 3.1. Configuration
-	 3.2. Commands
+	* Configuration
+	* Commands
  4. Version log
 
 
@@ -58,8 +58,8 @@ the sketch with the Arduino IDE and upload it to your modular robot.
 Inside the .pde file there are some parameters that need to be adjusted:
 
 - Communication parameters:
-	* *BAUD_RATE*: choose the apropiate for your serial connection.
-	* *INIT_KEY*: key that identifies your robot. It is used for stablishing a
+	* **BAUD_RATE**: choose the apropiate for your serial connection.
+	* **INIT_KEY**: key that identifies your robot. It is used for stablishing a
 "secure" connection.
 
 
@@ -82,12 +82,12 @@ distance in cm read by the sensor.
 - Stablishing connection
 	* The firmware accepts commands when it recieves a string that starts with
 i and contains the init key (i.e "i1234")
-	* It is possible to check a connection by sending *"PING"*. The firmware 
+	* It is possible to check a connection by sending **"PING"**. The firmware 
 returns "Ok" as answer to that command.
 
 - Movements:
 
-	- *"XY"* codes:
+	- **"XY"** codes:
 		* Are composed by the identifier of the axis (X, Y, or both) plus a number
 selecting a position inside that axis. If no position is specified it
 affects to all servos in that axis.
@@ -107,12 +107,12 @@ affects to all servos in that axis.
 		* It is possible to specify more than one parameter at a time:
 			`X0A60O15P120 (sets amplitude, phase and offset of first servo)`
 
-- *"S"* codes:
+- **"S"** codes:
 	* Are use to retrieve the value of a sensor. It sintax is S + index of sensor
 	I.e:
 	`S0 (returns the value measured by the first sensor)`
 
-- *"T"* (period):
+- **"T"** (period):
 	* Sets the value of the period of the oscillations
 
 		I.e:
