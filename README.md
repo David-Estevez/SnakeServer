@@ -2,10 +2,11 @@
 SnakeServer
 ===================================================================
 
+Firmware for robotic snake that manages movement and sensor data.
+
+
  * Author: [David Estévez-Fernández](http://github.com/David-Estevez)
  * Released under GPL license , May 2012
-
-Firmware for robotics snake that manages movement and sensor data.
 
 
 0. README index
@@ -57,8 +58,8 @@ the sketch with the Arduino IDE and upload it to your modular robot.
 Inside the .pde file there are some parameters that need to be adjusted:
 
 - Communication parameters:
-	* BAUD_RATE: choose the apropiate for your serial connection.
-	* INIT_KEY: key that identifies your robot. It is used for stablishing a
+	* *BAUD_RATE*: choose the apropiate for your serial connection.
+	* *INIT_KEY*: key that identifies your robot. It is used for stablishing a
 "secure" connection.
 
 
@@ -81,20 +82,21 @@ distance in cm read by the sensor.
 - Stablishing connection
 	* The firmware accepts commands when it recieves a string that starts with
 i and contains the init key (i.e "i1234")
-	* It is possible to check a connection by sending "PING". The firmware 
+	* It is possible to check a connection by sending *"PING"*. The firmware 
 returns "Ok" as answer to that command.
 
 - Movements:
 
-	- "XY"codes:
+	- *"XY"* codes:
 		* Are composed by the identifier of the axis (X, Y, or both) plus a number
 selecting a position inside that axis. If no position is specified it
 affects to all servos in that axis.
 
 		* After that goes the identifier of the parameter plus the value:
-			A for amplitude
-			P for phase
-			O for offset
+
+			* A for amplitude
+			* P for phase
+			* O for offset
 
 		* Examples of XY codes:
 
@@ -102,18 +104,18 @@ affects to all servos in that axis.
 			`YO45 (sets the offset of all servos in Y axis to 45 degrees)`
 			`X0P-180 (sets the phase of the first X axis servo to -180 degrees)`
 
-		*It is possible to specify more than one parameter at a time:
+		* It is possible to specify more than one parameter at a time:
 			`X0A60O15P120 (sets amplitude, phase and offset of first servo)`
 
-- "S" codes:
+- *"S"* codes:
 	* Are use to retrieve the value of a sensor. It sintax is S + index of sensor
 	I.e:
 	`S0 (returns the value measured by the first sensor)`
 
-- "T" (period):
+- *"T"* (period):
 	* Sets the value of the period of the oscillations
 
-	I.e:
+		I.e:
 		`T1000`
 
 	* Affects to all modules of the robot
