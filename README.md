@@ -1,20 +1,21 @@
 
 			SnakeServer
 =====================================================================
-  Author: David Estévez-Fernández [David-Estevez](http://github.com/David-Estevez)
+  Author: [David Estévez-Fernández](http://github.com/David-Estevez)
   Released under GPL license , May 2012
----------------------------------------------------------------------
+
+
 
 Firmware for robotics snake that manages movement and sensor data.
 
 ---------------------------------------------------------------------
 
-*1.Introduction
-*2.Installation
-*3.Usage
-	**3.1.Configuration
-	**3.2.Commands
-*4.Version log
+* 1.Introduction
+* 2.Installation
+* 3.Usage
+	** 3.1.Configuration
+	** 3.2.Commands
+* 4.Version log
 
 ----------------------------------------------------------------------
 
