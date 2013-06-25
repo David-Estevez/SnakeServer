@@ -91,7 +91,7 @@ void setup()
 	snake[Y_AXIS].add_servo(SERVO6);
 
 	//-- Put all the modules in a straight, waiting state:
-	Wave straight = {1000, 0, 0, 0, 0};
+	Wave straight = {T, 0, 0, 0, 0};
 	snake[X_AXIS].set_wave( straight );
 	snake[Y_AXIS].set_wave( straight );
 
@@ -260,7 +260,7 @@ int xy_code( char *buffer )
 	else if ( buffer[0] == 'Y')
 	{
 		//-- Modifications that affect only servos in y axis:
-		if ( buffer[1] > 55 && buffer[1] < 66 ) //-- If the next character is a digit
+		if ( buffer[1] > 47 && buffer[1] < 58 ) //-- If the next character is a digit
 		{
 			//-- A single servo is specified:
 			index_y = strtol( buffer + 1, NULL, 10);
@@ -289,7 +289,7 @@ int xy_code( char *buffer )
 
 		//-- Apply the new value:
 		if (index_x != -2)
-			snake[X_AXIS].SetA( new_amplitude, index_ );
+			snake[X_AXIS].SetA( new_amplitude, index_x );
 		if (index_y != -2)
 			snake[Y_AXIS].SetA( new_amplitude, index_y );
 			
@@ -302,9 +302,9 @@ int xy_code( char *buffer )
 
 		//-- Apply the new value:
 		if (index_x != -2)
-			snake[X_AXIS].SetPd( new_phase );
+			snake[X_AXIS].SetPd( new_phase , index_x);
 		if (index_y != -2)
-			snake[Y_AXIS].SetPd( new_phase );
+			snake[Y_AXIS].SetPd( new_phase , index_y);
 	}
 	
 	if (o_pos < command_length )
@@ -314,9 +314,9 @@ int xy_code( char *buffer )
 
 		//-- Apply the new value:
 		if (index_x != -2)
-			snake[X_AXIS].SetO( new_offset );
+			snake[X_AXIS].SetO( new_offset, index_x );
 		if (index_y != -2)
-			snake[Y_AXIS].SetO( new_offset );
+			snake[Y_AXIS].SetO( new_offset, index_y );
 	}
 
 
