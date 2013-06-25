@@ -42,13 +42,13 @@ char buffer[BUFFER_SIZE];
 
 //--Number of servos using in each orientation
 #define SERVO_ORIENT_1 3
-#define SERVO_ORIENT_2 1
+#define SERVO_ORIENT_2 2
 
 //-- One Worm by orientation
 Worm snake[2]; 
 
 //-- The whole snake has only one period, T:
-int T = 2000;
+int T = 4000;
 
 //-- The rest of the servo configuration has to be done
 //-- at the setup() function
@@ -64,10 +64,10 @@ struct Sensor{
 typedef struct Sensor Sensor;
 
 //-- Define the sensors:
-#define NUM_SENSOR 1
+#define NUM_SENSOR 0
 
 Sensor sensor[NUM_SENSOR] = {
-	{SERVO4, 0}
+	//{SERVO4, 0}
 };
 
 //-- END OF CONFIGURATION
@@ -82,12 +82,13 @@ void setup()
 	//-- This is the configuration I work with in my snake, you
 	//-- will have to define your own structure:
 	//-- X-axis modules:
-	snake[X_AXIS].add_servo(SERVO1, true);
-	snake[X_AXIS].add_servo(SERVO2, true);
-	snake[X_AXIS].add_servo(SERVO3);
+	snake[X_AXIS].add_servo(SERVO2);
+	snake[X_AXIS].add_servo(SERVO1);
+	snake[X_AXIS].add_servo(SERVO8);
 
 	//-- Y-axis modules:
-	snake[Y_AXIS].add_servo(SERVO8, true);
+	snake[Y_AXIS].add_servo(SERVO4);
+	snake[Y_AXIS].add_servo(SERVO6);
 
 	//-- Put all the modules in a straight, waiting state:
 	Wave straight = {1000, 0, 0, 0, 0};
@@ -97,6 +98,7 @@ void setup()
 	//-- Set the communication:
 	bool connected = false;
 	Serial.begin(BAUD_RATE);
+        Serial.println("Ready!");
 	Serial.flush();
 
 	while( !connected )
@@ -226,7 +228,7 @@ bool autentication()
 int xy_code( char *buffer )
 {
 	int index_x = -2, index_y = -2; //-- ("-2" simply means: "no servo selected")
-
+ 
 	if ( buffer[0] == 'X' )
 	{
 		if ( buffer[1] == 'Y' )
@@ -238,11 +240,14 @@ int xy_code( char *buffer )
 		}
 		else
 		{
+                         Serial.println( (int)buffer[1]);
 			//-- Modifications that affect only servos in x axis:
-			if ( buffer[1] > 55 && buffer[1] < 66 ) //-- If the next character is a digit
+			if ( buffer[1] > 47 && buffer[1] < 58 ) //-- If the next character is a digit
 			{
 				//-- A single servo is specified:
 				index_x = strtol( buffer + 1, NULL, 10);
+                                Serial.print( "Index: "); 
+                                Serial.println( index_x);
 			}
 			else
 			{
@@ -284,9 +289,9 @@ int xy_code( char *buffer )
 
 		//-- Apply the new value:
 		if (index_x != -2)
-			snake[X_AXIS].SetA( new_amplitude );
+			snake[X_AXIS].SetA( new_amplitude, index_ );
 		if (index_y != -2)
-			snake[Y_AXIS].SetA( new_amplitude );
+			snake[Y_AXIS].SetA( new_amplitude, index_y );
 			
 	}
 
